@@ -54,10 +54,10 @@ func Migrate(m any) {
 		for key, value := range filedsDict {
 			// if its last iteration
 			if counts == len(filedsDict)-1 {
-				sqlCmd += fmt.Sprintf(`%v %v)`, key, value)
+				sqlCmd += fmt.Sprintf(`%v %v)`, strings.ToLower(key), value)
 
 			} else {
-				sqlCmd += fmt.Sprintf("%s %s, ", key, value)
+				sqlCmd += fmt.Sprintf("%v %v, ", strings.ToLower(key), value)
 			}
 			counts++
 		}
