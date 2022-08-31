@@ -61,14 +61,14 @@ func main() {
         age: 25,
         Phone: "09121234567",
     }
-    managers.Create(a)
+    managers.Create(user)
 }
 ```
 
 how to get id of one record:
 
 ```go
-dbc:=managers.GetId(a,map[string]string{
+dbc:=managers.GetId(user,map[string]string{
  	"username": "aliaqa",
     "email": "alilotfi256@gmail.com"
  })
@@ -80,7 +80,7 @@ dbc:=managers.GetId(a,map[string]string{
 
 ```go                   
                     ///   struct,id,fieldname
-	dbc:=managers.GetField(a,26,"age")
+	dbc:=managers.GetField(user,26,"age")
 	fmt.Println(dbc.Resualt)
 ```
 
