@@ -3,7 +3,7 @@
 
 ## summary
 this is a simple example of go-pgsql-orm usage.
-i designed this simple lib to help me  learn go and postgresql better.
+i designed this simple lib to help myself  learn go and postgresql better.
 
 there are many improvements that can be done to this lib.
 
