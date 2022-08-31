@@ -1,8 +1,8 @@
 package dbpkg
 
 import (
-	"fmt"
 	"database/sql"
+	"fmt"
 	_ "github.com/lib/pq"
 )
 
@@ -15,6 +15,21 @@ type DbConnection struct {
 	ConnectionString string
 	Resualt any
 }
+
+func (db *DbConnection) QuaryCommandSelect(cmd string) *DbConnection {
+	database, err := sql.Open("postgres", db.ConnectionString)
+	must(err)
+	defer database.Close()
+	// QueryRow 
+	var res any
+	err = database.QueryRow(cmd).Scan(&res)
+	must(err)
+	db.Resualt = res
+	return db
+}
+
+
+
 
 func (db *DbConnection) ExecuteCommandAndIgnoreErrors(cmd string) *DbConnection {
 	database, err := sql.Open("postgres", db.ConnectionString)

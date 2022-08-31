@@ -33,7 +33,14 @@ func main() {
 		Age: 1,
 	}
 	// modelpkg.Migrate(a)
-	managers.Create(a)
+	// managers.Create(a)
+	// dbc:=managers.GetId(a,map[string]string{
+	// 	"id": "2",
+	// })
+	// fmt.Println(dbc.Resualt)
+	dbc:=managers.GetField(a,26,"age")
+	fmt.Println(dbc.Resualt)
+
 
 
 
@@ -42,9 +49,3 @@ func main() {
 }
 
 
-func must(err error) {
-	if err != nil {
-		fmt.Println(err)
-		panic(err)
-	}
-}

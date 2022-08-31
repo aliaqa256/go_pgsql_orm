@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"github.com/aliaqa256/go_pgsql_orm/dbpkg"
 	"github.com/fatih/structs"
+	"github.com/aliaqa256/go_pgsql_orm/dbpkg"
 )
 
 func  Create(m any){
@@ -56,4 +56,65 @@ func must(err error) {
 		fmt.Println(err)
 		panic(err)
 	}
+}
+
+
+func GetId(m any,args map[string]string) *dbpkg.DbConnection {
+	database, err := dbpkg.NewDbConnection(
+		"localhost",
+		5432,
+		"postgres",
+		"",
+		"test1",
+	).CheckConnections()
+	must(err)
+
+	model := m
+	tableName := reflect.TypeOf(model).Name()
+
+	
+	
+	sqlCmd:= fmt.Sprintf("SELECT id FROM %vs",strings.ToLower(tableName))
+	sqlCmd += " WHERE "
+	count := 0
+	for key , value  := range args {
+		if count == len(args)-1 {
+		sqlCmd += fmt.Sprintf("%v = '%v'",key,value)
+		} else {
+			sqlCmd += fmt.Sprintf("%v = '%v'",key,value)
+			sqlCmd += " and "
+
+		}
+		count++
+
+	}
+	sqlCmd += ";"
+
+	dbc:=database.QuaryCommandSelect(sqlCmd)
+
+	return dbc
+}
+
+func GetField(m any,id int,arg string) *dbpkg.DbConnection   {
+	database, err := dbpkg.NewDbConnection(
+		"localhost",
+		5432,
+		"postgres",
+		"",
+		"test1",
+	).CheckConnections()
+	must(err)
+	model := m
+	tableName := reflect.TypeOf(model).Name()
+	sqlCmd:= " SELECT " 
+	sqlCmd+= fmt.Sprintf("%v",arg)
+	sqlCmd+=fmt.Sprintf(" FROM %vs ",strings.ToLower(tableName))
+	sqlCmd+=fmt.Sprintf(" WHERE id = %v",id)
+	sqlCmd+=";"
+	dbc:=database.QuaryCommandSelect(sqlCmd)
+	return dbc
+
+
+
+
 }
