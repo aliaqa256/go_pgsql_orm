@@ -9,10 +9,12 @@ there are many improvements that can be done to this lib.
 
 with this small lib you can:
 
-- create schema
-- create table
+- create schema (migrate)
+- create table (migrate)
 - insert data
 - read one record
+- alert table to change type of cols  (migrate)
+- alert table to add new col (migrate)
 
 ### this is a simple example of go-pgsql-orm usage.:
 
