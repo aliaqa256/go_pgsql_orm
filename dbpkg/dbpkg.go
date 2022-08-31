@@ -28,9 +28,6 @@ func (db *DbConnection) QuaryCommandSelect(cmd string) *DbConnection {
 	return db
 }
 
-
-
-
 func (db *DbConnection) ExecuteCommandAndIgnoreErrors(cmd string) *DbConnection {
 	database, err := sql.Open("postgres", db.ConnectionString)
 	must(err)
@@ -40,7 +37,6 @@ func (db *DbConnection) ExecuteCommandAndIgnoreErrors(cmd string) *DbConnection 
 
 	return db
 }
-
 
 // note cheked this func yet
 func (db *DbConnection) ExecuteQueryRows(cmd string) *DbConnection {
