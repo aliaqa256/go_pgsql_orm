@@ -104,14 +104,21 @@ func (db *DbConnection) CheckConnections() (*DbConnection, error) {
 	return db, nil
 }
 
+// singelton
+var initinatedConnection *DbConnection = nil
 func NewDbConnection(host string, port int, user string, password string, dbname string) *DbConnection {
-	return &DbConnection{
+	if initinatedConnection != nil {
+		return initinatedConnection
+	}
+	initinatedConnection = &DbConnection{
 		Host:     host,
 		Port:     port,
 		User:     user,
 		Password: password,
 		Dbname:   dbname,
 	}
+
+	return initinatedConnection
 }
 
 
