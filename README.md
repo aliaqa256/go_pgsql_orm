@@ -43,6 +43,7 @@ type User struct {
 
 
 func main() {
+    a:= User{}
     modelpkg.Migrate(a)
 }
 ```
