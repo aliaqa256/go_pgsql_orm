@@ -3,16 +3,18 @@
 
 ## summary
 this is a simple example of go-pgsql-orm usage.
-i designed this simple lib to help me  learn go and postgresql better.
+i designed this simple lib to help myself  learn go and postgresql better.
 
 there are many improvements that can be done to this lib.
 
 with this small lib you can:
 
-- create schema
-- create table
+- create schema (migrate)
+- create table (migrate)
 - insert data
 - read one record
+- alert table to change type of cols  (migrate)
+- alert table to add new col (migrate)
 
 ### this is a simple example of go-pgsql-orm usage.:
 
@@ -59,14 +61,14 @@ func main() {
         age: 25,
         Phone: "09121234567",
     }
-    managers.Create(a)
+    managers.Create(user)
 }
 ```
 
 how to get id of one record:
 
 ```go
-dbc:=managers.GetId(a,map[string]string{
+dbc:=managers.GetId(user,map[string]string{
  	"username": "aliaqa",
     "email": "alilotfi256@gmail.com"
  })
@@ -78,7 +80,7 @@ dbc:=managers.GetId(a,map[string]string{
 
 ```go                   
                     ///   struct,id,fieldname
-	dbc:=managers.GetField(a,26,"age")
+	dbc:=managers.GetField(user,26,"age")
 	fmt.Println(dbc.Resualt)
 ```
 
