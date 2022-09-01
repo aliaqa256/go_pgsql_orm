@@ -9,6 +9,7 @@ there are many improvements that can be done to this lib.
 
 with this small lib you can:
 
+- connect to postgresql (singleton connection)
 - create schema (migrate)
 - create table (migrate)
 - insert data
